@@ -3,7 +3,7 @@ const Teacher = require('../model/teacherModel')
 
 const teacherGet = async (req,res)=>{
     const getTeacher = await Teacher.find()
-res.send(getTeacher)
+res.json(getTeacher)
 }
 const createTeacher = async (req,res)=>{
 const {name,age } = req.body
@@ -12,7 +12,7 @@ const {name,age } = req.body
         age
     })
    const teacherCreate = await  newTeacher.save()
-res.send(teacherCreate)
+res.json(teacherCreate)
 }
 
 module.exports={teacherGet, createTeacher}
