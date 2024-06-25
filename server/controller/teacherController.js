@@ -1,8 +1,9 @@
 const Teacher = require('../model/teacherModel')
 
 
-const teacherGet =(req,res)=>{
-res.send("teacher")
+const teacherGet = async (req,res)=>{
+    const getTeacher = await Teacher.find()
+res.send(getTeacher)
 }
 const createTeacher = async (req,res)=>{
 const {name,age } = req.body
