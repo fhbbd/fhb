@@ -1,26 +1,13 @@
-// const express = require('express')
-// const { default: mongoose } = require('mongoose')
-// const teacherRouter=require('./route/teacherRoute')
-// const app =express()
+
 
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const teacherRouter = require('./route/teacherRoute')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-
-// app.get('/', (req,res)=>{
-//     res.send("thes is get")
-// })
-// app.use('/teacher', teacherRouter)
-// module.exports= app;
-// api/data.js
-
-
-
-// Replace with your MongoDB connection string
-const MONGODB_URI = 'mongodb+srv://fhbashkona:fhb134042@fhb.csonyla.mongodb.net/fhb?retryWrites=true&w=majority&appName=fhb';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI, {
@@ -30,6 +17,9 @@ mongoose.connect(MONGODB_URI, {
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
+app.use('/api/teacher',teacherRouter)
 
 // Define a schema and a model (example)
 const Schema = mongoose.Schema;
