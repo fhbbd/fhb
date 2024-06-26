@@ -5,7 +5,7 @@
 
 
 // app.use(express.urlencoded({extended:true}))
-// app.use(express.json())
+
 
 // app.get('/', (req,res)=>{
 //     res.send("thes is get")
@@ -47,6 +47,24 @@ app.get('/api/data', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+app.post('/api/data', async (req, res) => {
+    try {
+        const { name, age } = req.body;
+    
+        // Create a new document instance from the request body
+        const newExample = new ExampleModel({
+          name,
+          age
+        });
+    
+        // Save the document to MongoDB
+        await newExample.save();
+    
+        res.status(201).json(newExample);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
 });
 
 // Export the express app instance for Vercel serverless functions
