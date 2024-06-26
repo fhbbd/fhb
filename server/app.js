@@ -3,8 +3,11 @@
 // const teacherRouter=require('./route/teacherRoute')
 // const app =express()
 
-
-// app.use(express.urlencoded({extended:true}))
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
 
 
 // app.get('/', (req,res)=>{
@@ -14,10 +17,7 @@
 // module.exports= app;
 // api/data.js
 
-const express = require('express');
-const mongoose = require('mongoose');
 
-const app = express();
 
 // Replace with your MongoDB connection string
 const MONGODB_URI = 'mongodb+srv://fhbashkona:fhb134042@fhb.csonyla.mongodb.net/fhb?retryWrites=true&w=majority&appName=fhb';
@@ -27,6 +27,7 @@ mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
